@@ -1,2 +1,2 @@
-# Kinetic-Novel
-# 작업 전 후 필독
+# Kinetic-Novel 프로젝트 지침서
+
