@@ -1596,3 +1596,22 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+## 추가한
+screen monologue(dialogue):
+    # 현재 대사 정보 가져오기
+    if monologue_list:
+        $ current_dialogue = monologue_list[0]
+    else:
+        $ current_dialogue = None
+    # 어두운 배경 추가
+    add Solid("#00000080")
+    # 중앙에 텍스트 출력
+    text dialogue:
+        color "#FFFFFF"
+        size 40
+        bold True
+        align (0.5,0.5)
+    # 클릭 처리
+    key "mouseup_1" action [Function(handle_next_monologue)]
+##부분

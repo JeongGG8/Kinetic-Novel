@@ -1,27 +1,86 @@
-﻿# 이 파일에 게임 스크립트를 입력합니다.
+﻿## 추가한 부분
+#함수 선언
+init python:
+    monologue_list = []
+    is_monologue_active = False
+    #대사집에 저장
+    def mono_with_character(dialogue):
+        monologue_list.append(dialogue)
+    #대사 출력
+    def handle_next_monologue():
+        global is_monologue_active
 
-# image 문을 사용해 이미지를 정의합니다.
-# image eileen happy = "eileen_happy.png"
+        if len(monologue_list) > 1:
+            is_monologue_active = True
+            dialogue = monologue_list.pop(0)
+            renpy.show_screen("monologue", dialogue=dialogue)
+            renpy.restart_interaction()
+        elif len(monologue_list) == 1:
+            dialogue = monologue_list.pop(0)
+            renpy.show_screen("monologue", dialogue=dialogue)
+            is_monologue_active = False
+        else: 
+            renpy.hide_screen("monologue")
+    #일반 대사 진행
+    def handle_normal_dialogue():
+        if not is_monologue_active:
+            # 일반 대사의 넘김이 가능한 경우에만 호출
+            return True
+        return False
+define mono = renpy.curry(renpy.call_screen)("monologue")
+##
 
-# 게임에서 사용할 캐릭터를 정의합니다.
+##캐릭터 정의
+#1장 1절
 define unkown = Character('???', color = "#4764ce")
 define none = Character('', color = "#ffffff")
-define han = Character('김한중', color = "#012482")
+define han = Character('김한중', color = "#33a154")
 define boss = Character('동학군 두목', color = "#016583")
 define burden = Character('동학군', color = "#015625")
+#1장 2절
+define oweon = Character('김원근', color = "#456358")
+define ms = Character('아낙네', color = "#e2ed1b")
+define mother = Character('어머니', color = "#00ff04")
+define doctor = Character("의원", color = "#ffffff")
 
-image bg_burning_building = "images/background/burning_building.png"
-image bg_yard = "images/background/yard.png"
-image bg_burning = "images/background/burning.jpg"
-
-
-image han_image_bound = im.FactorScale("images/character/han_bound.png", 0.3, )
-image han_image_loose =  im.FactorScale("images/character/han_loose.png", 0.3)
-image boss_image = im.FactorScale("images/character/boss.png", 0.3)
-
-
-# 여기에서부터 게임이 시작합니다.
+##배경
 #1장 1절
+image bg_burning_building = "images/background/chap1_1/burning_building.png"
+image bg_yard = "images/background/chap1_1/yard.png"
+image bg_burning = "images/background/chap1_1/burning.jpg"
+#1장 2절
+image bg_winter_mountain = "images/background/chap1_2/winter_mountain.png"
+image bg_winter_mountain_night = "images/background/chap1_2/winter_mountain_night.png"
+image bg_fpp = "images/background/chap1_2/first_person_perspective.png"
+image bg_sky = "images/background/chap1_2/sky.png"
+image bg_village = "images/background/chap1_2/village.png"
+image bg_winter_road = "images/background/chap1_2/winter_road.png"
+image bg_winter_road_afternoon = "images/background/chap1_2/winter_road_afternoon.png"
+image bg_winter_road_night = "images/background/chap1_2/winter_road_night.png"
+
+
+##
+
+##인물 이미지지
+#1장 1절
+image han_image_bound = im.FactorScale("images/character/chap1_1/han_bound.png", 0.3, )
+image han_image_loose =  im.FactorScale("images/character/chap1_1/han_loose.png", 0.3)
+image boss_image = im.FactorScale("images/character/chap1_1/boss.png", 0.3)
+#1장 2절
+image standing_oweon_image = im.FactorScale("images/character/chap1_2/standing_oweon.png", 0.3)
+image dad_son_image = im.FactorScale("images/character/chap1_2/dad_son.png", 0.3)
+image mother_image = im.FactorScale("images/character/chap1_2/mother.png", 0.3)
+image tired_oweon_image = im.FactorScale("images/character/chap1_2/tired_oweon.png", 0.3)
+image smile_oweon_image = im.FactorScale("images/character/chap1_2/SmileImage.png", 0.3)
+image sulk_oweon_image = im.FactorScale("images/character/chap1_2/SulkImage.png", 0.3)
+image kim_standing_image = im.FactorScale("images/character/chap1_2/KimStanding.png",0.3)
+image kim_smile_image = im.FactorScale("images/character/chap1_2/KimSmile.png",0.3)
+
+
+image 40_oweon = im.FactorScale("images/character/chap3_1/40_oweon.png", 0.8)
+
+##
+
 
 label start:
     scene black
@@ -128,10 +187,192 @@ label start:
     show boss_image
     boss "떠라! 오늘 밤 안으로 멀리멀리 떠라!"
     hide boss_image
-    with dissolve
+    show 40_oweon:
+        xpos 500
+        ypos 400
+    han "이미지 테스트"
 
+    with dissolve
+    jump chap1_2
     return
 
-label chap1:
+label chap1_2:
     scene black
     none "경주군 안강면 어느 산 속"
+    scene bg_mountain
+    han "탐관오리와 특수층 오만에 봉기한 동학당이 나라를 휩쓰는가 하더니 결국 난으로 끝났다."
+    han "날 죽이려던 무리들은 사라졌으나, 나를 반기지 않는 세상에 나갈 수 없었다."
+    han "두꺼운 비위짱으로 나서려고 해도 언제 무슨 위험이 기다리고 있을지 모른다."
+    han "나야 그렇다 치더라도 처자식이 문제다."
+    show standing_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "아버지예" 
+    hide standing_oweon_image
+    han "산짐승이 득실거리는 산 속에 쪼그리다 해가 지면"
+    han "엉금엉금 기어나가 칡뿌리로 연명하는 이유"
+    han "이 아이가 내 마지막 꿈이다. 이 아이만 보면 서글프면서도 기쁨을 안겨준다"
+    show standing_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "매 맞은 데 다 났습니까?"
+    hide standing_oweon_image
+    han "오냐, 원근아, 니는 걱정 말그래이"
+    show standing_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "와 맞았는교?"
+    hide standing_oweon_image
+    han "그래 됐다 마"
+    han "이 아이가 무엇을 알겠는가? 탐관오리의 행패니, 동학의 뜻이니 말해도 알아들을 리 없다."
+    han "그리고 행패 부리는 무리의 심부름하다 맞았다고 말하면 실망할지도 모른다."
+    han "그래 됐다. 원근아. 그 대신 니는 알아야 된대이. 사람이라 카는 것은 엃게 살아야 되는 기라. 욕심을 부려도 안 되고 남을 해쳐도 안되고, 게을러도 안되고, 거짓말 해도 안 되니라"
+    han "원근이, 니는 커서 뭐가 될꼬?"
+    show standing_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "......"
+    hide standing_oweon_image
+    han "니는 커서 가난한 사람 도와주고 불쌍한 사람 편들어 주는 사람 되면 참 좋겠다."
+    han "영근아, 니도 들었나? 그래 사는 기다이"
+    show dad_son_image:
+        xpos 500
+        ypos 100
+    han "영근아, 니도 들었나? 그래 사는 기다이"
+    hide dad_son_image
+    with dissolve
+
+    scene black
+    oweon "아버지가 왜 저렇게 산 속에 있어야만 하는지, 우리는 왜 아버지를 보러 몰래 다녀야만 하는지 알 수 없었다."
+    oweon "어머니는 근방 일가 친처집에 다니는 게 일과이다."
+    oweon "돌아올 때는 쌀이고 보리고 하다 못해 감자라도 얻어오셨다. 그리고 날이 밝기 전이면 어김없이 사람들 몰래 아버지에게 다녀오셨다"
+    oweon "그러던 어느 날 산에 올라갔던 어머니는 한 걱정을 하며 돌아오셨다"
+    oweon "그리고 해가 지자마자 또다시 집을 나서거더니 한밤 중이 되서야 끙끙 소리를 내며 아버지를 업고 들어오셨다."
+    oweon "아버지의 병환이 심해졌다는 것을 단박에 알 수 있었다."
+    with dissolve
+
+    scene bg_winter_mountain
+    oweon "아버지의 병환은 점점 심해져만 갔다."
+    oweon "겨울이 되고나니 미음조차 끓일 것이 없어 어머니는 가슴만 쥐어뜯고 앉아 있었다."
+    with dissolve
+
+    scene bg_fpp
+    oweon "답답함에 집을 뛰쳐나와 하염없이 길을 걸어도 내가 할 수 있는 건 없었다."
+    oweon "배가 고프다."
+    oweon "발이 시리다."
+    oweon "모진 겨울 바람에 귀가 깨질 것만 같다."
+    oweon "왜 나는 이렇게 징징 울며 걷는 것 말곤 할 수 있는 게 없을까?"
+    with dissolve
+
+    scene bg_sky
+    oweon "나는 어떻게 해야 됩니까?"
+    oweon "누군가에게 물어도 대답이 없다."
+    oweon "나는 무얼 해야됩니까?"
+    oweon "여전히 대답이 없다."
+    with fade
+
+    scene bg_village
+    oweon "밥 좀 주이소"
+    ms "너 뉘집 자식이고?"
+    ms "지금이 어느 때 하고 밥을 달라 카노...?"
+    ms "에휴 꼴을 보니 무슨 일이 있었는지는 모르겠지마는... 쪼매 기다려 보그래이"
+    ms "다시는 오지 말그래이"
+    ms "우리 집도 양식이 떨어져 간다. 느그 줄 밥 없대이"
+    oweon "바가지에 담긴 찬밥을 보니 단숨에 먹어치우고 싶다."
+    oweon "......."
+    oweon "문득 울고 있던 어머니가 떠올랐다"
+    with dissolve
+
+    scene bg_winter_mountain
+    show mother_image:
+        xpos 550
+        ypos 100
+    mother "니 어데서 이걸 얻어 갖고 왔노?"
+    hide mother_image
+    oweon "깜짝 놀란 어머니는 노하기는 했지만 눈가에 눈물을 글썽이고 있었다."
+    with dissolve
+
+    none "며칠 후"
+    show tired_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "배라도 곯지 않아야 빨리 낳지 않을까 싶어 며칠을 밥 구걸하고 다녔지만"
+    oweon "겨울 바람에 마을 사람들의 곳간마저 꽁꽁 닫아버렸다. 이젠 어쩌지"
+    unkown "사시오_! 사시오_!"
+    oweon "저건 뭐지?"
+    hide tired_oweon
+    scene bg_winter_road
+    show kim_standing_image:
+        xpos 550
+        ypos 100        
+    unkown "튼튼한 목침도 있고 어염도 있습니다"
+    hide kim_standing_image
+    show smile_oweon_image:
+        xpos 550
+        ypos 100
+    oweon "세상에 처음보는 물건이 가득하다."
+    oweon "저건 과자인가? 인삼도 있어!"
+    hide smile_oweon_image
+    oweon "저거면 아부지도 씻은듯이 일어나실텐데"
+    oweon "한 푼도 없으니 인삼은 커녕 개떡하나 사지도 못하네"
+    python:
+        mono_with_character("처음 보는 물건이 가득하니 신기하기도 했지만")
+        mono_with_character("무엇보다 그 사람은 이 세상에 근심 걱정이라곤 없고")
+        mono_with_character("그저 기쁨만 맛보며 사는 사람 같아 눈을 뗄 수 없었다.")
+        mono_with_character("그 사람은 며칠 동안 근처를 돌아다니더니 어느 날 사라져 버렸다.")
+        mono_with_character("나는 그가 다시 나타난다면 그처럼 여기저기 다닐 수 있는 기술이 무엇인지,")
+        mono_with_character("어떻게 하면 나도 그렇게 될 수 있는지")
+        mono_with_character("묻고 싶었다.")
+        handle_next_monologue()
+    with dissolve
+    none ""
+    mother "우짜고, 우짜고... 우리 영근이를 우짜고"
+    python:
+        mono_with_character("영근이가 굶주림 끝에 쓰러진 것이다.")
+        handle_next_monologue()
+    none ""
+
+    scene bg_winter_road_afternoon
+    show tired_oweon_image:
+        xpos 550
+        ypos 100
+    python:
+        mono_with_character("앓은 동생의 머리를 만지며 한편으로는")
+        mono_with_character("아버지를 보살피는 어머니를 보다가")
+        mono_with_character("무작정 문을 박차고 뛰어 나왔다.")
+        mono_with_character("무슨 말씀이라고 받고자 할아버지가 계시는 마을에 갔지만")
+        mono_with_character("별 도리가 없어 약방이 있는 안강읍까지 쉬지 않고 뛰었다.")
+        mono_with_character("넓은 들에 다다르자 귀를 도려내는 듯한 북쪽 바람이 맹렬히 쓸고 지나간다.")
+        mono_with_character("빨갛게 오른 두 뺨을 이따금 문지르며 약방에 다다라 문을 두들겼다.")
+        handle_next_monologue()
+    none ""
+    oweon "사람 살리시소! 내 동생 살려주시소!"
+    doctor "아니 이게 무슨...?"
+    oweon "내 동생 좀 살려주시소소"
+    oweon "열이 펄펄 끓고 배는 짜부러지고"
+    doctor "얘야, 얘야. 진정하고 찬찬히 말해 보그라"
+    python:
+
+
+    oweon "입은 바싹 마르고.. 또.. 또.."
+    python:
+
+    oweon "울지도 보채지도 않고 멍하니 쳐다만 보고"
+    doctor "오냐, 네 녀석 돈이 없다고 해고 인술을 다루는 마당에 한 번쯤 봐주지 못할 쏘냐?"
+    with dissolve
+
+    scene bg_winter_road_night
+    doctor "퍼뜩 가서 달여주그라"
+    doctor "낫거든 한번 더 오그라"
+    python:
+        mono_with_character("중천에 떠 있던 해는 어느 새 저물어 갔다.")
+        mono_with_character("북풍은 아까보다도 한층 더 피부에 아렸다.")
+        mono_with_character("얼마쯤 왔을까?")
+        mono_with_character("이러다가 동생에게도 약도 갖다주지 못하고 죽을 것 같았다.")
+        mono_with_character("죽을 수 없다")
+        mono_with_character("뛰어야 한다")
+        mono_with_character("냇물을 건너고 북풍을 맞으며 견뎠으나")
+        mono_with_character("고픈 배는 더는 뛸 힘을 마련해 주지 않았다.")
+    oweon "......"
+    with dissolve    
+    return
