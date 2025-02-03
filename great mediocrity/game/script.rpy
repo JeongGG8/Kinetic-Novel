@@ -2,6 +2,7 @@
 #함수 선언
 init python:
     monologue_list = []
+
     is_monologue_active = False
     #대사집에 저장
     def mono_with_character(dialogue):
@@ -27,6 +28,13 @@ init python:
             # 일반 대사의 넘김이 가능한 경우에만 호출
             return True
         return False
+
+    # 대화 중 독백
+    def mono_with(dialogue, character, character_image):
+        # 새로운 GUI 창에 캐릭터 이미지 표시
+        renpy.show_screen("monologue_image_screen", char_img=character_image)     
+        # 기존 GUI에서 캐릭터 이름과 대사 출력
+        character(dialogue)
 define mono = renpy.curry(renpy.call_screen)("monologue")
 ##
 
@@ -75,7 +83,7 @@ image smile_oweon_image = im.FactorScale("images/character/chap1_2/SmileImage.pn
 image sulk_oweon_image = im.FactorScale("images/character/chap1_2/SulkImage.png", 0.3)
 image kim_standing_image = im.FactorScale("images/character/chap1_2/KimStanding.png",0.3)
 image kim_smile_image = im.FactorScale("images/character/chap1_2/KimSmile.png",0.3)
-
+image doctor_image = im.FactorScale("images/character/chap1_2/Doctor.png",0.3)
 
 image 40_oweon = im.FactorScale("images/character/chap3_1/40_oweon.png", 0.8)
 
@@ -333,9 +341,6 @@ label chap1_2:
     none ""
 
     scene bg_winter_road_afternoon
-    show tired_oweon_image:
-        xpos 550
-        ypos 100
     python:
         mono_with_character("앓은 동생의 머리를 만지며 한편으로는")
         mono_with_character("아버지를 보살피는 어머니를 보다가")
@@ -346,19 +351,44 @@ label chap1_2:
         mono_with_character("빨갛게 오른 두 뺨을 이따금 문지르며 약방에 다다라 문을 두들겼다.")
         handle_next_monologue()
     none ""
+    show tired_oweon_image:
+        xpos 550
+        ypos 100
     oweon "사람 살리시소! 내 동생 살려주시소!"
+    hide tired_oweon_image
+    show doctor_image:
+        xpos 550
+        ypos 100
     doctor "아니 이게 무슨...?"
+    hide doctor_image
+    show tired_oweon_image:
+        xpos 550
+        ypos 100
     oweon "내 동생 좀 살려주시소소"
     oweon "열이 펄펄 끓고 배는 짜부러지고"
+    hide tired_oweon_image
+    show doctor_image:
+        xpos 550
+        ypos 100
     doctor "얘야, 얘야. 진정하고 찬찬히 말해 보그라"
     python:
-
-
+        mono_with("어디 뉘집 자식일꼬?", doctor, "doctor_image")
+        mono_with("하는 말이 기특한데...", doctor, "doctor_image")
+    hide doctor_image
+    show tired_oweon_image:
+        xpos 550
+        ypos 100
     oweon "입은 바싹 마르고.. 또.. 또.."
+    hide tired_oweon_image
+    show doctor_image:
+        xpos 550
+        ypos 100
     python:
-
-    oweon "울지도 보채지도 않고 멍하니 쳐다만 보고"
+        mono_with("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나", doctor, "doctor_image")
+        mono_with("분명 돈이라곤 한 푼도 없을테지", doctor, "doctor_image")
+    doctor "울지도 보채지도 않고 멍하니 쳐다만 보고"
     doctor "오냐, 네 녀석 돈이 없다고 해고 인술을 다루는 마당에 한 번쯤 봐주지 못할 쏘냐?"
+    hide doctor_image
     with dissolve
 
     scene bg_winter_road_night
@@ -373,6 +403,7 @@ label chap1_2:
         mono_with_character("뛰어야 한다")
         mono_with_character("냇물을 건너고 북풍을 맞으며 견뎠으나")
         mono_with_character("고픈 배는 더는 뛸 힘을 마련해 주지 않았다.")
+        handle_next_monologue()
     oweon "......"
     with dissolve    
     return

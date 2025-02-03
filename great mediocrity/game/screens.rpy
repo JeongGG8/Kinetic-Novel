@@ -1598,6 +1598,7 @@ style slider_slider:
     xsize 900
 
 ## 추가한
+#불투명 오버레이
 screen monologue(dialogue):
     # 현재 대사 정보 가져오기
     if monologue_list:
@@ -1614,4 +1615,23 @@ screen monologue(dialogue):
         align (0.5,0.5)
     # 클릭 처리
     key "mouseup_1" action [Function(handle_next_monologue)]
+
+#대화 중 독백
+screen monologue_image_screen(char_img):
+    modal False
+    zorder 150
+
+    frame:
+        align (0.85, 0.5)
+        background "#222222DD"
+        xsize 400
+        ysize 600
+        padding (10, 10)
+
+        add char_img xalign 0.5 yalign 0.5
+
+        key "dismiss" action Hide("monologue_image_screen")
+
+            
+
 ##부분
