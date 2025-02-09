@@ -1,26 +1,26 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 386, in script
+  File "game/script.rpy", line 392, in script
     python:
-  File "game/script.rpy", line 387, in <module>
-    mono_with("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나", doctor, doctor_image)
-NameError: name 'doctor_image' is not defined
+  File "game/script.rpy", line 394, in <module>
+    mono_with_iamge("분명 돈이라곤 한 푼도 없을테지", doctor, "doctor_image")
+NameError: name 'mono_with_iamge' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 386, in script
+  File "game/script.rpy", line 392, in script
     python:
   File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\ast.py", line 821, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 387, in <module>
-    mono_with("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나", doctor, doctor_image)
-NameError: name 'doctor_image' is not defined
+  File "game/script.rpy", line 394, in <module>
+    mono_with_iamge("분명 돈이라곤 한 푼도 없을테지", doctor, "doctor_image")
+NameError: name 'mono_with_iamge' is not defined
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.3.24111502
 great mediocrity 1.0
-Mon Feb  3 16:11:59 2025
+Mon Feb  3 17:25:06 2025

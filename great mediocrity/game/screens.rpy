@@ -1609,7 +1609,7 @@ screen monologue(dialogue):
     add Solid("#00000080")
     # 중앙에 텍스트 출력
     text dialogue:
-        color "#FFFFFF"
+        color "#ffb700"
         size 40
         bold True
         align (0.5,0.5)
@@ -1620,10 +1620,10 @@ screen monologue(dialogue):
 screen monologue_image_screen(char_img):
     modal False
     zorder 150
+    add Solid("#222222DD")
 
     frame:
         align (0.85, 0.5)
-        background "#222222DD"
         xsize 400
         ysize 600
         padding (10, 10)

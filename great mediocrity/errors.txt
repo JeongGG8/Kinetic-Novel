@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 369: invalid syntax
-    mono_with("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나" doctor, doctor_image)
-                                                       ^
+File "game/screens.rpy", line 1623: expected a keyword argument, colon, or end of line.
+    add Solid "#222222DD"
+              ^
 
 Ren'Py Version: Ren'Py 8.3.3.24111502
-Mon Feb  3 15:54:02 2025
+Mon Feb  3 18:37:31 2025

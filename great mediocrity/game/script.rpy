@@ -1,9 +1,10 @@
-﻿## 추가한 부분
-#함수 선언
+﻿##### 추가한 부분
+###함수 선언
 init python:
-    monologue_list = []
+    monologue_list = []                                                             #독백 저장 리스트
+    is_monologue_active = False                                                     # 대사 꺼내기 가능 여부
+    mono_active =False                                                              # 클릭 가로채기 가능 여부
 
-    is_monologue_active = False
     #대사집에 저장
     def mono_with_character(dialogue):
         monologue_list.append(dialogue)
@@ -25,31 +26,36 @@ init python:
     #일반 대사 진행
     def handle_normal_dialogue():
         if not is_monologue_active:
-            # 일반 대사의 넘김이 가능한 경우에만 호출
-            return True
+            return True                                                                 # 일반 대사의 넘김이 가능한 경우에만 호출
         return False
 
     # 대화 중 독백
-    def mono_with(dialogue, character, character_image):
-        # 새로운 GUI 창에 캐릭터 이미지 표시
-        renpy.show_screen("monologue_image_screen", char_img=character_image)     
-        # 기존 GUI에서 캐릭터 이름과 대사 출력
+    def mono_with_image(dialogue, character, character_image):                           # 클릭 가로채기 방지
+        renpy.show_screen("monologue_image_screen", char_img=character_image)            # 새로운 GUI 창에 캐릭터 이미지 표시 
         character(dialogue)
-define mono = renpy.curry(renpy.call_screen)("monologue")
-##
+        renpy.hide_screen("monologue_image_screen")                                      # 기존 GUI에서 캐릭터 이름과 대사 출력
+    # 대화 중 독백 사용하는 캐릭터 이미지에 사용(수정 중)
+    #def mono_callback(who, what):
+    #    global mono_active
+    #    if mono_active and what is not None:
+    #        renpy.hide_screen("monologue_image_screen")
+    #        mono_active = False     
 
-##캐릭터 정의
-#1장 1절
-define unkown = Character('???', color = "#4764ce")
+define mono = renpy.curry(renpy.call_screen)("monologue")
+#####
+
+##캐릭터 정의          
+#1장 1절                       #김한중 주인공이므로 주황색, 나머지는 하얀색
+define unkown = Character('???', color = "#ffffff")
 define none = Character('', color = "#ffffff")
-define han = Character('김한중', color = "#33a154")
-define boss = Character('동학군 두목', color = "#016583")
-define burden = Character('동학군', color = "#015625")
-#1장 2절
-define oweon = Character('김원근', color = "#456358")
-define ms = Character('아낙네', color = "#e2ed1b")
-define mother = Character('어머니', color = "#00ff04")
-define doctor = Character("의원", color = "#ffffff")
+define han = Character('김한중', color = "#ffb700")
+define boss = Character('동학군 두목', color = "#ffffff")
+define burden = Character('동학군', color = "#ffffff")
+#1장 2절                        #씬1 주인공 김한중, 씬2 주인공 어린 김원근만 주황색
+define oweon = Character('어린 김원근', color = "#ffb700")
+define ms = Character('아낙네', color = "#ffffff")
+define mother = Character('어머니', color = "#ffffff")
+define doctor = Character("의원", color = "#ffffff") 
 
 ##배경
 #1장 1절
@@ -84,6 +90,7 @@ image sulk_oweon_image = im.FactorScale("images/character/chap1_2/SulkImage.png"
 image kim_standing_image = im.FactorScale("images/character/chap1_2/KimStanding.png",0.3)
 image kim_smile_image = im.FactorScale("images/character/chap1_2/KimSmile.png",0.3)
 image doctor_image = im.FactorScale("images/character/chap1_2/Doctor.png",0.3)
+image
 
 image 40_oweon = im.FactorScale("images/character/chap3_1/40_oweon.png", 0.8)
 
@@ -195,10 +202,6 @@ label start:
     show boss_image
     boss "떠라! 오늘 밤 안으로 멀리멀리 떠라!"
     hide boss_image
-    show 40_oweon:
-        xpos 500
-        ypos 400
-    han "이미지 테스트"
 
     with dissolve
     jump chap1_2
@@ -207,7 +210,7 @@ label start:
 label chap1_2:
     scene black
     none "경주군 안강면 어느 산 속"
-    scene bg_mountain
+    scene bg_winter_mountain
     han "탐관오리와 특수층 오만에 봉기한 동학당이 나라를 휩쓰는가 하더니 결국 난으로 끝났다."
     han "날 죽이려던 무리들은 사라졌으나, 나를 반기지 않는 세상에 나갈 수 없었다."
     han "두꺼운 비위짱으로 나서려고 해도 언제 무슨 위험이 기다리고 있을지 모른다."
@@ -234,7 +237,7 @@ label chap1_2:
     han "그래 됐다 마"
     han "이 아이가 무엇을 알겠는가? 탐관오리의 행패니, 동학의 뜻이니 말해도 알아들을 리 없다."
     han "그리고 행패 부리는 무리의 심부름하다 맞았다고 말하면 실망할지도 모른다."
-    han "그래 됐다. 원근아. 그 대신 니는 알아야 된대이. 사람이라 카는 것은 엃게 살아야 되는 기라. 욕심을 부려도 안 되고 남을 해쳐도 안되고, 게을러도 안되고, 거짓말 해도 안 되니라"
+    han "그래 됐다. 원근아. 그 대신 니는 알아야 된대이. 사람이라 카는 것은 옳게 살아야 되는 기라. 욕심을 부려도 안 되고 남을 해쳐도 안되고, 게을러도 안되고, 거짓말 해도 안 되니라"
     han "원근이, 니는 커서 뭐가 될꼬?"
     show standing_oweon_image:
         xpos 550
@@ -246,7 +249,7 @@ label chap1_2:
     show dad_son_image:
         xpos 500
         ypos 100
-    han "영근아, 니도 들었나? 그래 사는 기다이"
+    han "절대로 남을 해치지 말그래이. 불쌍한 사람 도와주그래이."
     hide dad_son_image
     with dissolve
 
@@ -331,6 +334,7 @@ label chap1_2:
         mono_with_character("나는 그가 다시 나타난다면 그처럼 여기저기 다닐 수 있는 기술이 무엇인지,")
         mono_with_character("어떻게 하면 나도 그렇게 될 수 있는지")
         mono_with_character("묻고 싶었다.")
+
         handle_next_monologue()
     with dissolve
     none ""
@@ -372,8 +376,8 @@ label chap1_2:
         ypos 100
     doctor "얘야, 얘야. 진정하고 찬찬히 말해 보그라"
     python:
-        mono_with("어디 뉘집 자식일꼬?", doctor, "doctor_image")
-        mono_with("하는 말이 기특한데...", doctor, "doctor_image")
+        mono_with_image("어디 뉘집 자식일꼬?", doctor, "doctor_image")
+        mono_with_image("하는 말이 기특한데...", doctor, "doctor_image")
     hide doctor_image
     show tired_oweon_image:
         xpos 550
@@ -384,8 +388,8 @@ label chap1_2:
         xpos 550
         ypos 100
     python:
-        mono_with("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나", doctor, "doctor_image")
-        mono_with("분명 돈이라곤 한 푼도 없을테지", doctor, "doctor_image")
+        mono_with_image("말하는 증상도 그렇고 보아하니 필시 제대로 먹지 못해서 그런게로구나", doctor, "doctor_image")
+        mono_with_image("분명 돈이라곤 한 푼도 없을테지", doctor, "doctor_image")
     doctor "울지도 보채지도 않고 멍하니 쳐다만 보고"
     doctor "오냐, 네 녀석 돈이 없다고 해고 인술을 다루는 마당에 한 번쯤 봐주지 못할 쏘냐?"
     hide doctor_image
