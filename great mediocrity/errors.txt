@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 1623: expected a keyword argument, colon, or end of line.
-    add Solid "#222222DD"
-              ^
+File "game/script.rpy", line 220: end of line expected.
+    hide boss_image with myfade_character:
+                                         ^
 
 Ren'Py Version: Ren'Py 8.3.3.24111502
-Mon Feb  3 18:37:31 2025
+Mon Feb 10 16:06:05 2025

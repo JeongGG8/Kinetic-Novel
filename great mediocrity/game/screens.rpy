@@ -1620,18 +1620,19 @@ screen monologue(dialogue):
 screen monologue_image_screen(char_img):
     modal False
     zorder 150
-    add Solid("#222222DD")
+    
 
     frame:
-        align (0.85, 0.5)
-        xsize 400
-        ysize 600
+        align (0.75, 0.5)
+        xsize 340
+        ysize 560
+        background Solid("#222222DD")
         padding (10, 10)
 
-        add char_img xalign 0.5 yalign 0.5
+        add char_img xalign 0.5 yalign 0.1
 
         key "dismiss" action Hide("monologue_image_screen")
 
-            
+    
 
 ##부분
