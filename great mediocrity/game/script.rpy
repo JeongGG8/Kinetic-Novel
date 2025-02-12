@@ -82,6 +82,7 @@ image bg_winter_road = "images/background/chap1_2/winter_road.png"
 image bg_winter_road_afternoon = "images/background/chap1_2/winter_road_afternoon.png"
 image bg_winter_road_night = "images/background/chap1_2/winter_road_night.png"
 image bg_indoor = "images/background/chap1_2/indoor.png"
+#1장 3절
 image bg_sky_mountain = "images/background/chap1_2/sky_mountain.png"
 image bg_tavern = "images/background/chap1_2/tavern.png"
 image bg_kim_house = "images/background/chap1_2/kim_house.png"
@@ -91,12 +92,16 @@ image bg_market = "images/background/chap1_2/market.png"
 
 ##
 
-##인물 이미지지
-#1장 1절
+##인물 이미지 원본
+#1장 1절 원본
 image han_image_bound = im.FactorScale("images/character/chap1_1/han_bound.png", 0.3, )
 image han_image_loose =  im.FactorScale("images/character/chap1_1/han_loose.png", 0.3)
 image boss_image = im.FactorScale("images/character/chap1_1/boss.png", 0.3)
 image group_image = im.FactorScale("images/character/chap1_1/group.png", 0.3)
+#1장 1절 불투명 적용
+image boss_dark_image = im.MatrixColor(im.FactorScale("images/character/chap1_1/boss.png", 0.3), im.matrix.brightness(-0.3))
+image han_image_bound_dark_image = im.MatrixColor(im.FactorScale("images/character/chap1_1/han_bound.png", 0.3), im.matrix.brightness(-0.3))
+image han_image_loose_dark_image = im.MatrixColor(im.FactorScale("images/character/chap1_1/han_loose.png", 0.3), im.matrix.brightness(-0.3))
 #1장 2절
 image oweon_image = im.FactorScale("images/character/chap1_2/oweon.png", 0.3)
 image dad_son_image = im.FactorScale("images/character/chap1_2/dad_son.png", 0.3)
@@ -110,6 +115,7 @@ image doctor_image = im.FactorScale("images/character/chap1_2/Doctor.png",0.3)
 image doctor_edit_image = im.FactorScale("images/character/chap1_2/Doctor_edit.png",0.3)
 image young_image = im.FactorScale("images/character/chap1_2/young.png",0.3)
 image ms_image = im.FactorScale("images/character/chap1_2/villager.png",0.3)
+#1장 3절
 image Merchant_image = im.FactorScale("images/character/chap1_2/Merchant.png",0.3)
 image cry_oweon_image = im.FactorScale("images/character/chap1_2/PreviousImage.png",0.3)
 image student_image = im.FactorScale("images/character/chap1_2/Student.png",0.3)
@@ -133,6 +139,9 @@ init:
     #        alpha 1.0              # 처음엔 완전히 보이는 상태에서 시작
     #        linear 1.0 alpha 0.0 
 
+## 어두운 오버레이 이미지 정의
+image dark_overlay = Solid("#000000")  # 50% 투명한 검은색
+
 label start:
     scene black
     none "1894년"
@@ -147,45 +156,56 @@ label start:
     with myfade_1
 
     scene bg_yard 
+    show han_image_bound_dark_image at myfade_character:
+        xpos 200
+        ypos 250
     show boss_image at myfade_character:
-        xpos 550
+        xpos 900
         ypos 100
     boss "네가 이 곳의 사장책이냐"
-    hide boss_image
-    show han_image_bound at myfade_character:
-        xpos 550
+    show boss_dark_image:
+        xpos 900
         ypos 100
+    show han_image_bound:
+        xpos 200
+        ypos 250
     han "......그렇다."
-    hide han_image_bound
-    show boss_image 
+    hide boss_dark_image
+    hide han_image_bound 
     boss "네가 왜 포박되었는지 아느냐?"
-    hide boss_image 
-    show han_image_bound: 
-        xpos 550
+    show han_image_bound:
+        xpos 200
+        ypos 250
+    show boss_dark_image:
+        xpos 900
         ypos 100
     han "내가 묻고 싶은 말이다. 대체 어디서 온 누구냐? 뭣 때문에 소중한 나라의 곡식에 불을 지르고 이와 같이 소동을 피우는가!?"
     hide han_image_bound 
-    show boss_image 
+    hide boss_dark_image
     boss "네 말이 뜻 밖에도 시원하구나. 세상이 어찌 되었는지 들은바 없나?"
-    hide boss_image 
-    show han_image_bound:
-        xpos 550
+    show boss_dark_image:
+        xpos 900
         ypos 100
+    show han_image_bound:
+        xpos 200
+        ypos 250
     han "없다!"
     hide han_image_bound 
-    show boss_image 
+    hide boss_dark_image
     boss "어리석구나. 이곳 농민들한테 들으니 너는 우직하고 착해빠진 사창으로, 조정에서 하라는 대루만 하는 놈이라...."
     boss "이제 그 어리석음을 깨우쳐 주시 위해서 이야기해 줄기니 소상히 듣거라."
     boss "저기있는 곡식은 누가 먹을 거였나?"
-    hide boss_image 
     show han_image_bound:
-        xpos 550
+        xpos 200
+        ypos 250
+    show boss_dark_image:
+        xpos 900
         ypos 100
     han "내 알 배 아니다. 조정에 바칠 뿐이다."
     hide han_image_bound 
-    show boss_image 
+    hide boss_dark_image
     boss "나라를 생각하는 놈들이냐? 백성을 걱정하는 무리들이냐? 아니였제? "
-    boss "제놈들 배창자 채우고 갖은 호강 다 하구, 주지육림에 몸을 담아 썩어 가는 출 모르는  데 썼단 말이다!"
+    boss "제놈들 배창자 채우고 갖은 호강 다 하구, 주지육림에 몸을 담아 썩어 가는 줄 모르는  데 썼단 말이다!"
     boss "동학군은 일어섰다. 불의를 쳐부술 것이다. 너는 그 불의의 꼭두각시 노릇을 한 놈, 따라서 형을 받아야 마땅하다!"
     hide boss_image 
     with myfade_1
