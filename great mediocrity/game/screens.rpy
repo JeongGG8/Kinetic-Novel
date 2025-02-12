@@ -1625,7 +1625,7 @@ screen monologue_image_screen(char_img):
     frame:
         align (0.75, 0.5)
         xsize 340
-        ysize 560
+        ysize 600
         background Solid("#222222DD")
         padding (10, 10)
 

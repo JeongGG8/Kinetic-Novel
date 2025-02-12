@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 220: end of line expected.
-    hide boss_image with myfade_character:
-                                         ^
+File "game/script.rpy", line 56: invalid syntax
+    ('김원근', color = "#ffffff")
+                   ^
 
 Ren'Py Version: Ren'Py 8.3.3.24111502
-Mon Feb 10 16:06:05 2025
+Wed Feb 12 17:56:14 2025

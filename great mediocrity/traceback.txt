@@ -1,15 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 453, in script
-    doctor "퍼뜩 가서 달여주그라"
-AttributeError: 'NoneType' object has no attribute 'style'
+While processing the color property of anonymous style:
+  File "game/script.rpy", line 390, in script
+    unkown "사시오_! 사시오_!"
+Exception: Color string '00000' must be 3, 4, 6, or 8 hex digits long.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 453, in script
-    doctor "퍼뜩 가서 달여주그라"
+  File "game/script.rpy", line 390, in script
+    unkown "사시오_! 사시오_!"
   File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\ast.py", line 2573, in execute
     Say.execute(self)
   File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\ast.py", line 615, in execute
@@ -26,40 +26,39 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\core.py", line 2215, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\core.py", line 2879, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\core.py", line 1381, in draw_screen
-    surftree = renpy.display.render.render_screen(
-  File "render.pyx", line 486, in renpy.display.render.render_screen
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\transform.py", line 1056, in render
-    return RenderTransform(self).render(width, height, st, at)
-  File "accelerator.pyx", line 994, in renpy.display.accelerator.RenderTransform.render
-  File "accelerator.pyx", line 427, in renpy.display.accelerator.RenderTransform.render_child
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\transition.py", line 194, in render
-    renpy.display.render.render(self.transitions[-1], width, height, 0, 0)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\transition.py", line 376, in render
-    return render(self.new_widget, width, height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 222, in renpy.display.render.render
-AttributeError: 'NoneType' object has no attribute 'style'
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\core.py", line 2745, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\screen.py", line 485, in visit_all
+    self.child.visit_all(callback, seen=None)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  [Previous line repeated 1 more time]
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\displayable.py", line 436, in visit_all
+    callback(self)
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\display\core.py", line 2745, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\text\text.py", line 2225, in per_interact
+    if self.style.slow_abortable:
+  File "gen3-static/styleclass.pxi", line 613, in renpy.styledata.styleclass.Style.slow_abortable.__get__
+  File "style.pyx", line 493, in renpy.style.StyleCore._get
+  File "style.pyx", line 717, in renpy.style.build_style
+  File "style.pyx", line 714, in renpy.style.build_style
+  File "gen3-static/style_functions.pyx", line 349, in style_functions.color_property
+  File "C:\Users\jkk12\renpy-8.3.3-sdk\renpy\color.py", line 165, in __new__
+    raise Exception("Color string {!r} must be 3, 4, 6, or 8 hex digits long.".format(c))
+Exception: Color string '00000' must be 3, 4, 6, or 8 hex digits long.
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.3.24111502
-great mediocrity 1.0
-Mon Feb 10 16:39:26 2025
+great mediocrity 0.3.1
+Wed Feb 12 16:14:06 2025
