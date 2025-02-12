@@ -208,6 +208,7 @@ label start:
     boss "제놈들 배창자 채우고 갖은 호강 다 하구, 주지육림에 몸을 담아 썩어 가는 줄 모르는  데 썼단 말이다!"
     boss "동학군은 일어섰다. 불의를 쳐부술 것이다. 너는 그 불의의 꼭두각시 노릇을 한 놈, 따라서 형을 받아야 마땅하다!"
     hide boss_image 
+    hide han_image_bound_dark_image 
     with myfade_1
 
     scene black
