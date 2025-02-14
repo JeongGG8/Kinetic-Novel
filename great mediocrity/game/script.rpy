@@ -1,4 +1,4 @@
-﻿﻿label start:
+label start:
     scene black
     none "1894년"
     unkown "불이야!"

@@ -6,6 +6,11 @@
 ## 코드보다 먼저 실행됩니다.
 init offset = -2
 
+init python:
+    # 텍스트 박스 스타일 정의
+    style.textbox = Style(style.default)
+    style.textbox.background = Frame("./images/textbox_bg.png", 0, 0)  # 그라데이션 배경 이미지 지정
+
 ## gui.init의 호출은 스타일을 합리적인 기본값으로 재설정하고, 게임의 너비(width)
 ## 와 높이(height)를 설정합니다.
 init python:
@@ -19,13 +24,24 @@ define config.check_conflicting_properties = True
 ## GUI 설정 변수
 ################################################################################
 
+# GUI 초기화 부분에 추가
+init python:
+    style.textbox.background = Frame("./images/textbox_bg.png", 0, 0)  # 텍스트 박스의 배경 이미지 지정
+
+# 그라데이션 효과를 위해 이미지 파일을 준비
+# 아래쪽이 진하고 위쪽이 옅어지는 그라데이션 이미지를 직접 만들어야 함.
+
+define gui.textbox_height = 300
+init python:
+    style.textbox.background = Frame("./images/textbox_bg.png", 0, 0)  # 그라데이션 배경
+
 
 ## 색상 ##########################################################################
 ##
 ## 인터페이스에서 글자의 색상입니다.
 
 ## 강조 색상은 레이블(label)과 강조된 글자로 인터페이스 전체에서 사용됩니다.
-define gui.accent_color = '#00cc99'
+define gui.accent_color = '#99ccff'
 
 ## 텍스트 버튼(text button)이 선택(selected)됐거나 커서를 올리지(hovered) 않았을
 ## 때 사용됩니다.
@@ -36,7 +52,7 @@ define gui.idle_color = '#888888'
 define gui.idle_small_color = '#aaaaaa'
 
 ## 버튼(button)과 막대(bar)에 커서를 올렸을 때(hovered) 사용됩니다.
-define gui.hover_color = '#66e0c1'
+define gui.hover_color = '#c1e0ff'
 
 ## 텍스트 버튼(text button)에 선택됐지만(selected) 포커스되지(focused) 않았을 때
 ## 사용됩니다. 버튼(button)은 현재 화면이거나 설정값인 경우 선택됨(selected)이
@@ -48,8 +64,8 @@ define gui.insensitive_color = '#8888887f'
 
 ## 채워지지 않은 빈 막대(bar)에 사용됩니다. 이것은 바로 사용되지 않지만, 막대
 ## (bar) 이미지 파일이 재생성됐을 때 사용됩니다.
-define gui.muted_color = '#00513d'
-define gui.hover_muted_color = '#007a5b'
+define gui.muted_color = '#3d5166'
+define gui.hover_muted_color = '#5b7a99'
 
 ## 대사(dialogue)와 선택지(menu choice)의 글자에서 사용됩니다.
 define gui.text_color = '#ffffff'
@@ -98,12 +114,11 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## 이러한 변수들은 한 번에 한 줄의 대사가 어떻게 화면에 표시되는지 제어합니다.
 
 ## 대사를 포함하는 텍스트 박스의 높이입니다.
-define gui.textbox_height = 278
+define gui.textbox_height = 300
 
 ## 화면에 텍스트박스를 세로로 배치합니다. 0.0은 최상단, 0.5는 중앙, 그리고 1.0은
 ## 최하단입니다.
 define gui.textbox_yalign = 1.0
-
 
 ## 말하는 캐릭터의 이름을 텍스트 박스를 기준으로 배치합니다. 이것은 좌측이나 최
 ## 상단으로부터 전체 픽셀값의 숫자가 되거나, 0.5로 중앙이 될 수 있습니다.
@@ -325,8 +340,8 @@ define gui.vbar_borders = Borders(6, 6, 6, 6)
 define gui.vscrollbar_borders = Borders(6, 6, 6, 6)
 define gui.vslider_borders = Borders(6, 6, 6, 6)
 
-## What to do with unscrollable scrollbars in the game menu. "hide" hides them,
-## while None shows them.
+## GUI에서 스크롤할 수 없는 스크롤 막대로 뭘 할 수 있나요? "hide"로 그것들을 숨
+## 기고, None은 그것들을 보여줍니다.
 define gui.unscrollable = "hide"
 
 

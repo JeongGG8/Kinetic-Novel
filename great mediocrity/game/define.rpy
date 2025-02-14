@@ -127,3 +127,5 @@ init:
     
 # 어두운 오버레이 이미지 정의
 image dark_overlay = Solid("#000000")  # 50% 투명한 검은색
+
+
