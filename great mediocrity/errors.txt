@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 56: invalid syntax
-    ('김원근', color = "#ffffff")
-                   ^
+File "game/script.rpy", line 283: expected 'simple_expression' not found.
+    show group_image at onlayer master:
+                        ^
 
 Ren'Py Version: Ren'Py 8.3.3.24111502
-Wed Feb 12 17:56:14 2025
+Tue Feb 18 21:13:03 2025

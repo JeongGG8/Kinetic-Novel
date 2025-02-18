@@ -151,7 +151,9 @@ label start:
     play sound "audio/door_sound.mp3"
 
     scene bg_burning_building 
-    unknown "네놈이 사장책이렸다! 순순히 이르는 대로 따라야지 반항하면 큰 코 다칠 줄 알아라!"
+    unknown "네놈이 사장책이렸다!" 
+    unknown "순순히 이르는 대로 따라라" 
+    unknown "반항하면 큰 코 다칠 줄 알아라!"
     play sound "audio/hit_sound.mp3"
     with myfade_1
 
@@ -179,7 +181,9 @@ label start:
     show boss_dark_image:
         xpos 900
         ypos 100
-    han "내가 묻고 싶은 말이다. 대체 어디서 온 누구냐? 뭣 때문에 소중한 나라의 곡식에 불을 지르고 이와 같이 소동을 피우는가!?"
+    han "내가 묻고 싶은 말이다. 대체 어디서 온 누구냐?"
+    han "뭣 때문에 소중한 나라의 곡식에 불을 지르고" 
+    han "이와 같이 소동을 피우는가!?"
     hide han_image_bound 
     hide boss_dark_image
     boss "네 말이 뜻 밖에도 시원하구나. 세상이 어찌 되었는지 들은바 없나?"
@@ -192,7 +196,9 @@ label start:
     han "없다!"
     hide han_image_bound 
     hide boss_dark_image
-    boss "어리석구나. 이곳 농민들한테 들으니 너는 우직하고 착해빠진 사창으로, 조정에서 하라는 대루만 하는 놈이라...."
+    boss "어리석구나."
+    boss "이곳 농민들한테 들으니 너는 우직하고 착해빠진 사창으로," 
+    boss "조정에서 하라는 대루만 하는 놈이라...."
     boss "이제 그 어리석음을 깨우쳐 주시 위해서 이야기해 줄기니 소상히 듣거라."
     boss "저기있는 곡식은 누가 먹을 거였나?"
     show han_image_bound:
@@ -201,74 +207,131 @@ label start:
     show boss_dark_image:
         xpos 900
         ypos 100
-    han "내 알 배 아니다. 조정에 바칠 뿐이다."
+    han "내 알 배 아니다." 
+    han "조정에 바칠 뿐이다."
     hide han_image_bound 
     hide boss_dark_image
-    boss "나라를 생각하는 놈들이냐? 백성을 걱정하는 무리들이냐? 아니였제? "
-    boss "제놈들 배창자 채우고 갖은 호강 다 하구, 주지육림에 몸을 담아 썩어 가는 줄 모르는  데 썼단 말이다!"
-    boss "동학군은 일어섰다. 불의를 쳐부술 것이다. 너는 그 불의의 꼭두각시 노릇을 한 놈, 따라서 형을 받아야 마땅하다!"
+    show boss_image:
+        xpos 900
+        ypos 100
+    boss "그 조정에 있는 놈들이 어떤 무리들이냐?"
+    hide boss_image
+    show han_image_bound:
+        xpos 200
+        ypos 250
+    han "......"
+    hide han_image_bound
+    show boss_image:
+        xpos 900
+        ypos 100
+    boss "나라를 생각하는 놈들이냐?" 
+    boss "백성을 걱정하는 무리들이냐?" 
+    boss "아니였제? "
+    boss "제놈들 배창자 채우고 갖은 호강 다 하구," 
+    boss "주지육림에 몸을 담아 썩어 가는 줄 모르는 데 썼단 말이다!"
+    boss "그것을 어찌 우리가 보고 참아야만 되느냐"
+    boss "동학군은 일어섰다. 불의를 쳐부술 것이다." 
+    boss "너는 그 불의의 꼭두각시 노릇을 한 놈, 따라서 형을 받아야 마땅하다!"
     hide boss_image 
     hide han_image_bound_dark_image 
     with myfade_1
 
     scene black
-    han "모두 옳은 소리다, 양반이 관직을 얻어 3년만 벼슬을 누리면 자손 대대로 만복을 누린다. 그만큼 양반은 백성들을 착취했고, 심지어는 죽기까지 했다."
-    han "일찍 부모님을 여의고 간신히 간신히 살아오다가 이제 겨우 터를 잡아 끼니 굶지 않는 신세가 되었는제..... 이제 마지막인가. 이것이이 모든 것의 끝장인가."
+    python:
+        mono_with_character("모두 옳은 소리다,")
+        mono_with_character("양반이 관직을 얻어 3년만 벼슬을 누리면 자손 대대로 만복을 누린다.")
+        mono_with_character("그만큼 양반은 백성들을 착취했고, 심지어는 죽기까지 했다.")
+        mono_with_character("일찍 부모님을 여의고 간신히 간신히 살아오다가 이제 겨우 터를 잡아 끼니 굶지 않는 신세가 되었는데.....")
+        mono_with_character("이제 마지막인가.")
+        mono_with_character("이것이 모든 것의 끝장인가.")
+        handle_next_monologue()
+    none ""
     with fade
-    scene bg_yard 
-    show boss_image 
+    scene bg_yard
+    show  han_image_bound_dark_image:
+        xpos 200
+        ypos 250
+    show boss_image:
+        xpos 900
+        ypos 100
     boss "......"
     boss "김한중"
     hide boss_image
-    show han_image_bound:
-        xpos 550
+    show boss_dark_image:
+        xpos 900
         ypos 100
+    show han_image_bound:
+        xpos 200
+        ypos 250
     han ".....?"
     hide han_image_bound
-    show boss_image  
+    show boss_image:
+        xpos 900
+        ypos 100  
     boss "네가 김한중이라 하는 것은 틀림이 없겠제?"
     hide boss_image
     show han_image_bound:
-        xpos 550
-        ypos 100
+        xpos 200
+        ypos 250
     han "틀림없소"
     hide han_image_bound 
-    show boss_image 
+    show boss_image:
+        xpos 900
+        ypos 100 
     boss "저자를 이리 끌어내리고 포승을 풀어라!"
     hide boss_image
-    show group_image:
-        xpos 550
+    hide han_image_bound_dark_image
+    show group_image onlayer master:
+        xpos -100
         ypos 100
+    show han_image_bound_dark_image onlayer master:
+        xpos 200
+        ypos 250
     burden "어째서 풀어줍니까?"
     hide group_image
-    show boss_image
+    show boss_image:
+        xpos 900
+        ypos 100
     boss "풀어주라 하잖나!"
-    hide boss_image 
     with myfade_1
 
     scene bg_burning
-    show boss_image 
+    show boss_dark_image onlayer master:
+        xpos 900
+        ypos 100
+    show boss_image at myfade_character:
+        xpos 900
+        ypos 100 
+    show han_image_loose_dark_image onlayer master:
+        xpos 150
+        ypos 250
     boss "일어나그라!" 
     boss "그대로 듣거라! 김한중은 우리가 동학군이라는 것을 아느냐?"
     hide boss_image 
-    show han_image_loose at myfade_character:
-        xpos 550
-        ypos 100
+    show han_image_loose:
+        xpos 150
+        ypos 250
     han "예."
     hide han_image_loose 
-    show boss_image 
+    show boss_image:
+        xpos 900 
+        ypos 100
     boss "동학군은 불의를 꺾자고 하다가 너를 잡았다." 
     boss "그런데 근방 사람들 얘기를 들으니, 네 천성이 어질고 착실하여 비록 상부의 명령을 따르기는 했지만도, 네 멋대로 백성을 괴롭히지는 않았다는 것을 알았다."
     boss "목숨만은 부지하게 해줄테니 당장 이곳을 떠야 할 것이다."
     hide boss_image 
     show han_image_loose:
-        xpos 550
-        ypos 100
+        xpos 150
+        ypos 250
     han ".....!!"
     hide han_image_loose 
-    show boss_image 
+    show boss_image onlayer master:
+        xpos 900 
+        ypos 100 
     boss "떠라! 오늘 밤 안으로 멀리멀리 떠라!"
-    hide boss_image at myfade_character with dissolve
+    hide han_image_loose_dark_image with dissolve
+    hide boss_dark_image 
+    hide boss_image with dissolve
     with myfade_5
     jump chap1_2
     return
@@ -276,7 +339,7 @@ label start:
 label chap1_2:
     scene black
     none "경주군 안강면 어느 산 속"
-    scene bg_winter_mountain with myfade_1
+    scene bg_winter_mountain 
     python:
         mono_with_character("날 죽이려던 무리들은 사라졌으나, 나를 반기지 않는 세상에 나갈 수 없었다.")
         mono_with_character("두꺼운 비위짱으로 나서려고 해도 언제 무슨 위험이 기다리고 있을지 모른다.")
@@ -284,10 +347,14 @@ label chap1_2:
         handle_next_monologue()
     none ""
     show oweon_image at myfade_character:
-        xpos 550
+        xpos 350
+        ypos 100
+    show young_image at myfade_character:
+        xpos 750
         ypos 100
     oweon_two "아버지예" 
     hide oweon_image
+    hide young_image
     python:
         mono_with_character("산짐승이 득실거리는 산 속에 쪼그리다 해가 지면")
         mono_with_character("엉금엉금 기어나가 칡뿌리로 연명하는 이유")
@@ -295,16 +362,24 @@ label chap1_2:
         handle_next_monologue()
     none ""
     show oweon_image:
-        xpos 550
+        xpos 350
+        ypos 100
+    show young_image:
+        xpos 750
         ypos 100
     oweon_two "매 맞은 데 다 났습니까?"
     hide oweon_image
+    hide young_image
     han "오냐, 원근아, 니는 걱정 말그래이"
     show oweon_image:
-        xpos 550
+        xpos 350
+        ypos 100
+    show young_image:
+        xpos 750
         ypos 100
     oweon_two "와 맞았는교?"
     hide oweon_image
+    hide young_image
     han "그래 됐다 마"
     python:
         mono_with_character("이 아이가 무엇을 알겠는가? 탐관오리의 행패니, 동학의 뜻이니 말해도 알아들을 리 없다.")
@@ -314,16 +389,20 @@ label chap1_2:
     han "그래 됐다. 원근아. 그 대신 니는 알아야 된대이. 사람이라 카는 것은 옳게 살아야 되는 기라. 욕심을 부려도 안 되고 남을 해쳐도 안되고, 게을러도 안되고, 거짓말 해도 안 되니라"
     han "원근이, 니는 커서 뭐가 될꼬?"
     show oweon_image:
-        xpos 550
+        xpos 350
+        ypos 100
+    show young_image:
+        xpos 750
         ypos 100
     oweon_two "......"
     hide oweon_image
+    hide young_image
     han "니는 커서 가난한 사람 도와주고 불쌍한 사람 편들어 주는 사람 되면 참 좋겠다."
     han "영근아, 니도 들었나? 그래 사는 기다이"
-    with dissolve
+    with myfade_1
     scene bg_bedroom 
     show dad_son_image at myfade_character:
-        xpos 550
+        xpos 350
         ypos 100
     han "절대로 남을 해치지 말그래이. 불쌍한 사람 도와주그래이."
     hide dad_son_image
