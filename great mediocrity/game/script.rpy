@@ -282,18 +282,18 @@ label chap1_2:
         mono_with_character("두꺼운 비위짱으로 나서려고 해도 언제 무슨 위험이 기다리고 있을지 모른다.")
         mono_with_character("나야 그렇다 치더라도 처자식이 문제다.")
         handle_next_monologue()
-    han ""
+    none ""
     show oweon_image at myfade_character:
         xpos 550
         ypos 100
-    oweon "아버지예" 
+    oweon_two "아버지예" 
     hide oweon_image
     python:
         mono_with_character("산짐승이 득실거리는 산 속에 쪼그리다 해가 지면")
         mono_with_character("엉금엉금 기어나가 칡뿌리로 연명하는 이유")
         mono_with_character("이 아이가 내 마지막 꿈이다. 이 아이만 보면 서글프면서도 기쁨을 안겨준다")
         handle_next_monologue()
-    han ""
+    none ""
     show oweon_image:
         xpos 550
         ypos 100
@@ -310,7 +310,7 @@ label chap1_2:
         mono_with_character("이 아이가 무엇을 알겠는가? 탐관오리의 행패니, 동학의 뜻이니 말해도 알아들을 리 없다.")
         mono_with_character("그리고 행패 부리는 무리의 심부름하다 맞았다고 말하면 실망할지도 모른다.")
         handle_next_monologue()
-    han ""
+    none ""
     han "그래 됐다. 원근아. 그 대신 니는 알아야 된대이. 사람이라 카는 것은 옳게 살아야 되는 기라. 욕심을 부려도 안 되고 남을 해쳐도 안되고, 게을러도 안되고, 거짓말 해도 안 되니라"
     han "원근이, 니는 커서 뭐가 될꼬?"
     show oweon_image:
@@ -338,7 +338,7 @@ label chap1_2:
         mono_with_character("그리고 해가 지자마자 또다시 집을 나서거더니 한밤 중이 되서야 끙끙 소리를 내며 아버지를 업고 들어오셨다.")
         mono_with_character("아버지의 병환이 심해졌다는 것을 단박에 알 수 있었다.")
         handle_next_monologue()
-    oweon ""
+    none ""
     with dissolve
 
     scene bg_house_winter
@@ -776,10 +776,9 @@ label chap1_2:
 
 
     scene bg_school
-    show oweon_image at myfade_character:
-        xpos 550
-        ypos 100
+    show student_image
     stu_1 "형, 꼭 가야되나?"
+    hide student_image
     hide oweon_image with dissolve
     with myfade_2
 
